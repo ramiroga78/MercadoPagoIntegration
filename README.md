@@ -1,4 +1,4 @@
-# MercadoPagoIntegration
+# Mercado Pago Integration
 Mercado Pago integration for payment (using CheckOut Pro) and refunding
 
 **MercadoPagoController** contains the public endpoint that allows Mercado Pago to inform payment updates.
