@@ -35,7 +35,7 @@ namespace Aplicacion.Controlador
                 // Crea el request con múltiples ítems
                 var preferenceRequest = new PreferenceRequest
                 {
-                    ExternalReference = pedido.id.ToString(),
+                    ExternalReference = pedido.id.ToString(), //idPedido,
                     Items = new List<PreferenceItemRequest>(),
                     Shipments = new PreferenceShipmentsRequest
                     {
@@ -46,7 +46,7 @@ namespace Aplicacion.Controlador
                     {
                         Name = usuario.nombre,
                         Surname = "",
-                        Email = usuario.mail,
+                        Email = "test_user_19035362@testuser.com", //usuario.mail,
                         Phone = new PhoneRequest
                         {
                             AreaCode = "",
@@ -75,10 +75,17 @@ namespace Aplicacion.Controlador
                     },
                         Installments = 1,
                     },
-                    StatementDescriptor = "Company_Name",
+                    StatementDescriptor = "Delivegy",
                     BinaryMode = true,
                     Expires = true,
                     ExpirationDateTo = DateTime.Now.AddDays(1),
+                    //BackUrls = new PreferenceBackUrlsRequest
+                    //{
+                    //    Success = backendURL + "/api/SuccessPayment",
+                    //    Failure = backendURL + "/failure",
+                    //    Pending = backendURL + "/pendings",
+                    //},
+                    //AutoReturn = "approved",
                     NotificationUrl = backendURL + "/api/PaymentNotification"
                 };
 
@@ -170,13 +177,13 @@ namespace Aplicacion.Controlador
             }
         }
 
-        public static HttpWebResponse GetResponseFromUrl(string authorizarion, string url, string method)
+        public static HttpWebResponse GetResponseFromUrl(string authorization, string url, string method)
         {
             HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(url);
 
             httpRequest.Method = method;
             httpRequest.Accept = "application/json";
-            httpRequest.Headers["Authorization"] = authorizarion;
+            httpRequest.Headers["Authorization"] = authorization;
 
             return (HttpWebResponse)httpRequest.GetResponse();
         }
